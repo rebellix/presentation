@@ -1,0 +1,271 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>DOM Events: Presentation</title>
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/serif.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+	<link rel="stylesheet" href="css/zenburn.css">
+	<link rel="stylesheet" href="css/styles.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-markdown>
+				<textarea data-template>
+					# DOM EVENTS
+					<p>Anton Sviarzhynski, 2018</p>
+				</textarea>
+			</section>
+			<section>
+				<section data-markdown>
+					<textarea data-template>
+					## TYPES & TRIGGERS		
+					- Mouse (click - move - drag - drop)
+					- Keyboard
+					- Touch
+					- HTML form
+					- HTML frame/object
+					- User interface, Mutation, Progress, etc.
+				</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					### MOUSE EVENTS
+					- click
+					- dblclick
+					- mousedown
+					- mouseup
+					- mouseover
+					- mousemove
+					- mouseout
+					- select
+					- wheel
+				</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					### DRAG & DROP EVENTS
+					- dragstart
+					- drag
+					- dragenter
+					- dragleave
+					- dragover
+					- drop
+					- dragend
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					### KEYBOARD EVENTS
+					- keydown
+					- keypress
+					- keyup
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					### TOUCH EVENTS
+					- touchstart
+					- touchend
+					- touchmove
+					- touchenter
+					- touchleave
+					- touchcancel
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					### HTML FORM EVENTS
+					- submit
+					- select
+					- change
+					- reset
+					- focus
+					- blur
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					### HTML FRAME/OBJECT EVENTS
+					- load
+					- unload
+					- abort
+					- error
+					- resize
+					- scroll
+					</textarea>
+				</section>
+			</section>
+			<section>
+				<section data-markdown>
+					<textarea data-template>
+					### EVENT HANDLING MODELS
+					- inline (right in HTML)
+					- traditional (selector.on + 'event name')
+					- W3C (addEventListener / removeEventListener)
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### INLINE HANDLING MODEL
+					<img src="img/inline-handling.PNG">
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### TRADITIONAL HANDLING MODEL
+					<img src="img/traditional-handling.PNG">
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+					#### W3C HANDLING MODEL
+					(the very right way)
+					<area>
+						<img src="img/w3c-handling-1.PNG">
+						<img src="img/w3c-handling-2.PNG">
+					</area>
+					</textarea>
+				</section>
+			</section>
+			<section>
+				<section data-markdown>
+					<textarea data-template>
+						### EVENT OBJECT
+						The argument passed to event handler
+						<area>
+							<img src="img/event-object.PNG">
+						</area>
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						### EVENT TARGET
+						The property of Event object that indicates what exactly was fired
+						<area><img src="img/event-target.PNG"></area>
+				</textarea>
+				</section>
+			</section>
+			<section>
+				<section data-markdown>
+					<textarea data-template>
+						### EVENT FIRING and DOM FLOW
+						capturing / target / bubbling
+						<p>default mode: bubbling</p>
+				</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						<img src="img/eventflow.svg" alt="eventflow" height="560px">
+				</textarea>
+				</section>
+			</section>
+			<section>
+				<section data-markdown>
+					<textarea data-template>
+					### EVENT properties
+					- target
+					- currentTarget
+					- bubbles
+					- type
+					- eventPhase
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+							### EVENT methods
+							- preventDefault
+							- stopPropagation
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+							e.preventDefault()
+							<img src="img/preventDefault.PNG">
+						</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+							e.stopPropagation()
+							<img src="img/stop-propagation.PNG">
+						</textarea>
+				</section>
+			</section>
+			<section>
+				<section data-markdown>
+					<textarea data-template>
+					#### EVENT DELEGATION
+					- add listener on parent element
+					- all children events bubble to parent
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						can be like this
+							<img src="img/delegation-1.PNG">
+						</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+							but with bubbling it is much more simple
+							<img src="img/delegation-2.PNG">
+						</textarea>
+				</section>
+			</section>
+
+
+			<section>
+				<h6>Thanks for your attention!</h6>
+			</section>
+		</div>
+	</div>
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			dependencies: [{
+					src: 'plugin/markdown/marked.js'
+				},
+				{
+					src: 'plugin/markdown/markdown.js'
+				},
+				{
+					src: 'plugin/notes/notes.js',
+					async: true
+				},
+				{
+					src: 'plugin/highlight/highlight.js',
+					async: true,
+					callback: function () {
+						hljs.initHighlightingOnLoad();
+					}
+				}
+			]
+		});
+	</script>
+</body>
+
+</html>
