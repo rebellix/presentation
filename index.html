@@ -14,6 +14,8 @@
 	<link rel="stylesheet" href="lib/css/zenburn.css">
 	<link rel="stylesheet" href="css/zenburn.css">
 	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	 crossorigin="anonymous">
 
 	<!-- Printing and PDF exports -->
 	<script>
@@ -37,13 +39,14 @@
 			<section>
 				<section data-markdown>
 					<textarea data-template>
-					## TYPES & TRIGGERS		
-					- Mouse (click - move - drag - drop)
-					- Keyboard
-					- Touch
-					- HTML form
-					- HTML frame/object
-					- User interface, Mutation, Progress, etc.
+					## TYPES & TRIGGERS
+					<div class="icon-container">
+						<i class="fas fa-mouse-pointer"></i>
+						<i class="fas fa-keyboard"></i>
+						<i class="fas fa-mobile-alt"></i>
+						<i class="fas fa-code"></i>
+					</div>
+					
 				</textarea>
 				</section>
 				<section data-markdown>
@@ -56,8 +59,6 @@
 					- contextmenu
 					- mouseover
 					- mouseout
-					- mouseenter
-					- mouseleave
 					- mousemove
 					- select
 					- wheel
@@ -129,22 +130,64 @@
 				<section data-markdown>
 					<textarea data-template>
 					#### INLINE HANDLING MODEL
-					<img src="img/inline-handling.PNG">
+<p><i class="far fa-thumbs-down"></i></p>
+					<pre>
+						<code>
+<script>
+	function clickMe() {
+		console.log('click!');
+	}
+</script>
+
+
+
+<div onclick="clickMe()"></div>
+						</code>
+					</pre>
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 					#### TRADITIONAL HANDLING MODEL
-					<img src="img/traditional-handling.PNG">
+<p><i class="far fa-thumbs-down"></i></p>
+					<pre>
+						<code>
+<div class="myDiv"></div>
+
+<script>
+	const myDiv = document.querySelector('.myDiv');
+	myDiv.onclick = function () {
+		alert('click!');
+		myDiv.onclick = null;
+	}
+</script>
+						</code>
+					</pre>
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 					#### W3C HANDLING MODEL
-					(the very right way)
+<p><i class="far fa-thumbs-up"></i></p>
 					<area>
-						<img src="img/w3c-handling-1.PNG">
-						<img src="img/w3c-handling-2.PNG">
+						<pre>
+							<code><script>
+	element.addEventListener(eventName, eventHandler, useCapture);
+</script></code>
+						</pre>
+						<pre>
+							<code>
+<div class="myDiv"></div>
+<script>
+	const myDiv = document.querySelector('.myDiv');
+	function clickMe() {
+		alert('click!');
+		myDiv.removeEventListener('click', clickMe);
+	}
+	myDiv.addEventListener('click!', clickMe);
+</script>
+							</code>
+						</pre>
 					</area>
 					</textarea>
 				</section>
@@ -154,7 +197,19 @@
 					<textarea data-template>
 						### EVENT TARGET
 						The property of Event object that indicates what exactly was fired
-						<area><img src="img/event-target.PNG"></area>
+						<pre>
+							<code>
+<div class="myDiv"></div>
+
+<script>
+	const myDiv = document.querySelector('.myDiv');
+
+	myDiv.addEventListener('click!', function (e) {
+		assert(e.target === myDiv); // TRUE!
+	});
+</script>
+							</code>
+						</pre>
 					</textarea>
 				</section>
 			</section>
@@ -175,17 +230,7 @@
 			<section>
 				<section data-markdown>
 					<textarea data-template>
-					### EVENT properties
-					- target
-					- currentTarget
-					- bubbles
-					- type
-					- eventPhase
-					</textarea>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
-							### EVENT methods
+							### EVENT basic methods
 							- preventDefault
 							- stopPropagation
 					</textarea>
@@ -193,13 +238,48 @@
 				<section data-markdown>
 					<textarea data-template>
 							e.preventDefault()
-							<img src="img/preventDefault.PNG">
+							<p>prevents the default browser behavior</p>
+							<pre>
+								<code>
+<form>
+	<input type="text">
+</form>
+
+<script>
+	const input = document.querySelector('input');
+	const form = document.querySelector('form');
+
+	form.addEventListener('submit', function (e) {
+		e.preventDefault();
+		alert(input.value);
+	})
+</script>
+								</code>
+							</pre>
 						</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 							e.stopPropagation()
-							<img src="img/stop-propagation.PNG">
+							<p>prevents the event from bubbling</p>
+							<pre>
+								<code>
+<div>
+	<button>Click me!</button>
+</div>
+<script>
+	const outerDiv = document.querySelector('div');
+	const button = document.querySelector('button');
+
+	outerDiv.addEventListener('click', function () {
+		alert('click!'); // won't alert!
+	});
+	button.addEventListener('click', function (e) {
+		e.stopPropagation();
+	})
+</script>
+								</code>
+							</pre>
 						</textarea>
 				</section>
 			</section>
@@ -213,21 +293,66 @@
 				</section>
 				<section data-markdown>
 					<textarea data-template>
-						can be like this
-							<img src="img/delegation-1.PNG">
+						can be like this:
+							<pre>
+								<code><ul>
+	<li id="1"><a href="#">Link 1</a></li>
+	<li id="2"><a href="#">Link 2</a></li>
+	<li id="3"><a href="#">Link 3</a></li>
+</ul>
+<script>
+	const item1 = document.getElementById('1');
+	const item2 = document.getElementById('2');
+	const item3 = document.getElementById('3');
+	item1.addEventListener('click', function () {
+		alert(item1.innerText);
+	})
+	item2.addEventListener('click', function () {
+		alert(item2.innerText);
+	})
+	item3.addEventListener('click', function () {
+		alert(item3.innerText);
+	})
+</script>
+								</code>
+							</pre>
 						</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 							but with bubbling it is much more simple
-							<img src="img/delegation-2.PNG">
+							<pre>
+								<code>
+<ul>
+	<li id="1"><a href="#">Link 1</a></li>
+	<li id="2"><a href="#">Link 2</a></li>
+	<li id="3"><a href="#">Link 3</a></li> // and so on...
+</ul>
+
+<script>
+	const list = document.querySelector('ul');
+
+	list.addEventListener('click', function (e) {
+		alert(e.target.innerText);
+	})
+</script>
+								</code>
+							</pre>
 						</textarea>
 				</section>
 			</section>
 
 
 			<section>
-				<h6>Thanks for your attention!</h6>
+				<h3>Thanks for your attention!</h3>
+				<p>source links:</p>
+				<ul>
+<li><a>DOM Events on MDN</a></li>
+<li><a>DOM Events on W3C</a></li>
+<li><a>DOM Events on learn.javascript.ru</a></li>
+				</ul>
+				
+				
 			</section>
 		</div>
 	</div>
