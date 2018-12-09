@@ -130,64 +130,50 @@
 				<section data-markdown>
 					<textarea data-template>
 					#### INLINE HANDLING MODEL
-<p><i class="far fa-thumbs-down"></i></p>
-					<pre>
-						<code>
-<script>
-	function clickMe() {
-		console.log('click!');
-	}
-</script>
+					<p><i class="far fa-thumbs-down"></i></p>
+					<pre><code><script>
+						function clickMe() {
+							console.log('click!');
+						}
+					</script>
 
-
-
-<div onclick="clickMe()"></div>
-						</code>
-					</pre>
+					<div onclick="clickMe()"></div>
+					</code></pre>
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
-					#### TRADITIONAL HANDLING MODEL
-<p><i class="far fa-thumbs-down"></i></p>
-					<pre>
-						<code>
-<div class="myDiv"></div>
+						#### TRADITIONAL HANDLING MODEL
+						<p><i class="far fa-thumbs-down"></i></p>
+						<pre><code><div class="myDiv"></div>
 
-<script>
-	const myDiv = document.querySelector('.myDiv');
-	myDiv.onclick = function () {
-		alert('click!');
-		myDiv.onclick = null;
-	}
-</script>
-						</code>
-					</pre>
+						<script>
+							const myDiv = document.querySelector('.myDiv');
+							myDiv.onclick = function () {
+								alert('click!');
+								myDiv.onclick = null;
+							}
+						</script>
+						</code></pre>
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 					#### W3C HANDLING MODEL
-<p><i class="far fa-thumbs-up"></i></p>
+					<p><i class="far fa-thumbs-up"></i></p>
 					<area>
-						<pre>
-							<code><script>
-	element.addEventListener(eventName, eventHandler, useCapture);
-</script></code>
-						</pre>
-						<pre>
-							<code>
-<div class="myDiv"></div>
-<script>
-	const myDiv = document.querySelector('.myDiv');
-	function clickMe() {
-		alert('click!');
-		myDiv.removeEventListener('click', clickMe);
-	}
-	myDiv.addEventListener('click!', clickMe);
-</script>
-							</code>
-						</pre>
+						<pre><code><script>
+							element.addEventListener(eventName, eventHandler, useCapture);
+					</script></code></pre>
+					<pre><code><div class="myDiv"></div>
+					<script>
+						const myDiv = document.querySelector('.myDiv');
+						function clickMe() {
+							alert('click!');
+							myDiv.removeEventListener('click', clickMe);
+						}
+						myDiv.addEventListener('click!', clickMe);
+					</script></code></pre>
 					</area>
 					</textarea>
 				</section>
@@ -197,19 +183,15 @@
 					<textarea data-template>
 						### EVENT TARGET
 						The property of Event object that indicates what exactly was fired
-						<pre>
-							<code>
-<div class="myDiv"></div>
+						<pre><code><div class="myDiv"></div>
 
-<script>
-	const myDiv = document.querySelector('.myDiv');
+						<script>
+							const myDiv = document.querySelector('.myDiv');
 
-	myDiv.addEventListener('click!', function (e) {
-		assert(e.target === myDiv); // TRUE!
-	});
-</script>
-							</code>
-						</pre>
+							myDiv.addEventListener('click!', function (e) {
+								assert(e.target === myDiv); // TRUE!
+							});
+						</script></code></pre>
 					</textarea>
 				</section>
 			</section>
@@ -233,47 +215,39 @@
 					<textarea data-template>
 							e.preventDefault()
 							<p>prevents the default browser behavior</p>
-							<pre>
-								<code>
-<form>
-	<input type="text">
-</form>
+							<pre><code><form>
+								<input type="text">
+							</form>
 
-<script>
-	const input = document.querySelector('input');
-	const form = document.querySelector('form');
+							<script>
+								const input = document.querySelector('input');
+								const form = document.querySelector('form');
 
-	form.addEventListener('submit', function (e) {
-		e.preventDefault();
-		alert(input.value);
-	})
-</script>
-								</code>
-							</pre>
+								form.addEventListener('submit', function (e) {
+									e.preventDefault();
+									alert(input.value);
+								})
+							</script></code></pre>
 						</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 							e.stopPropagation()
 							<p>prevents the event from bubbling</p>
-							<pre>
-								<code>
-<div>
-	<button>Click me!</button>
-</div>
-<script>
-	const outerDiv = document.querySelector('div');
-	const button = document.querySelector('button');
+							<pre><code><div>
+								<button>Click me!</button>
+							</div>
+							<script>
+								const outerDiv = document.querySelector('div');
+								const button = document.querySelector('button');
 
-	outerDiv.addEventListener('click', function () {
-		alert('click!'); // won't alert!
-	});
-	button.addEventListener('click', function (e) {
-		e.stopPropagation();
-	})
-</script>
-								</code>
-							</pre>
+								outerDiv.addEventListener('click', function () {
+									alert('click!'); // won't alert!
+								});
+								button.addEventListener('click', function (e) {
+									e.stopPropagation();
+								})
+							</script></code></pre>
 						</textarea>
 				</section>
 			</section>
@@ -288,50 +262,43 @@
 				<section data-markdown>
 					<textarea data-template>
 						can be like this:
-							<pre>
-								<code><ul>
-	<li id="1"><a href="#">Link 1</a></li>
-	<li id="2"><a href="#">Link 2</a></li>
-	<li id="3"><a href="#">Link 3</a></li>
-</ul>
-<script>
-	const item1 = document.getElementById('1');
-	const item2 = document.getElementById('2');
-	const item3 = document.getElementById('3');
-	item1.addEventListener('click', function () {
-		alert(item1.innerText);
-	})
-	item2.addEventListener('click', function () {
-		alert(item2.innerText);
-	})
-	item3.addEventListener('click', function () {
-		alert(item3.innerText);
-	})
-</script>
-								</code>
-							</pre>
+							<pre><code><ul>
+								<li id="1"><a href="#">Link 1</a></li>
+								<li id="2"><a href="#">Link 2</a></li>
+								<li id="3"><a href="#">Link 3</a></li>
+						</ul>
+						<script>
+							const item1 = document.getElementById('1');
+							const item2 = document.getElementById('2');
+							const item3 = document.getElementById('3');
+							item1.addEventListener('click', function () {
+								alert(item1.innerText);
+							})
+							item2.addEventListener('click', function () {
+								alert(item2.innerText);
+							})
+							item3.addEventListener('click', function () {
+								alert(item3.innerText);
+							})
+						</script></code></pre>
 						</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 							but with bubbling it is much more simple
-							<pre>
-								<code>
-<ul>
-	<li id="1"><a href="#">Link 1</a></li>
-	<li id="2"><a href="#">Link 2</a></li>
-	<li id="3"><a href="#">Link 3</a></li> // and so on...
-</ul>
+							<pre><code><ul>
+								<li id="1"><a href="#">Link 1</a></li>
+								<li id="2"><a href="#">Link 2</a></li>
+								<li id="3"><a href="#">Link 3</a></li> // and so on...
+							</ul>
 
-<script>
-	const list = document.querySelector('ul');
+							<script>
+								const list = document.querySelector('ul');
 
-	list.addEventListener('click', function (e) {
-		alert(e.target.innerText);
-	})
-</script>
-								</code>
-							</pre>
+								list.addEventListener('click', function (e) {
+									alert(e.target.innerText);
+								})
+							</script></code></pre>
 						</textarea>
 				</section>
 			</section>
@@ -341,12 +308,12 @@
 				<h3>Thanks for your attention!</h3>
 				<p>source links:</p>
 				<ul>
-<li><a>DOM Events on MDN</a></li>
-<li><a>DOM Events on W3C</a></li>
-<li><a>DOM Events on learn.javascript.ru</a></li>
+					<li><a>DOM Events on MDN</a></li>
+					<li><a>DOM Events on W3C</a></li>
+					<li><a>DOM Events on learn.javascript.ru</a></li>
 				</ul>
-				
-				
+
+
 			</section>
 		</div>
 	</div>
